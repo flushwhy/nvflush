@@ -1,5 +1,13 @@
--- You can add your own plugins here or in other files in this directory!
---  I promise not to create any merge conflicts in this directory :)
---
--- See the kickstart.nvim README for more information
-return {}
+require 'scrollfontsize'
+return {
+  {
+    'andweeb/presence.nvim',
+  },
+  {
+    'theprimeagen/harpoon',
+    config = function()
+      require('harpoon').setup()
+      require('telescope').load_extension 'harpoon'
+    end,
+  },
+}
