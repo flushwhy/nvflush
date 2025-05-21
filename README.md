@@ -1,55 +1,99 @@
-# kickstart.nvim
+# Neovim Config (Kickstart-based, VSCode-friendly)
 
-## Introduction
+## Overview
+This is a modular, easy-to-read Neovim configuration inspired by Kickstart.nvim, but split into logical files for maintainability. It is tailored for users coming from VSCode, with familiar keybinds, modern code completion, LSP, formatting, and AI code suggestions.
 
-A starting point for Neovim that is:
+## Quick Start
 
-* Small
-* Single-file
-* Completely Documented
-
-**NOT** a Neovim distribution, but instead a starting point for your configuration.
-
-## Installation
-
-### Install Neovim
-
-Kickstart.nvim targets *only* the latest
-['stable'](https://github.com/neovim/neovim/releases/tag/stable) and latest
-['nightly'](https://github.com/neovim/neovim/releases/tag/nightly) of Neovim.
-If you are experiencing issues, please make sure you have the latest versions.
-
-### Install External Dependencies
-
-External Requirements:
+### Requirements (keep from Kickstart)
+- Neovim (latest stable or nightly recommended)
 - Basic utils: `git`, `make`, `unzip`, C Compiler (`gcc`)
 - [ripgrep](https://github.com/BurntSushi/ripgrep#installation)
 - Clipboard tool (xclip/xsel/win32yank or other depending on platform)
-- A [Nerd Font](https://www.nerdfonts.com/): optional, provides various icons
-  - if you have it set `vim.g.have_nerd_font` in `init.lua` to true
-- Language Setup:
-  - If you want to write Typescript, you need `npm`
-  - If you want to write Golang, you will need `go`
-  - etc.
+- [Nerd Font](https://www.nerdfonts.com/) (optional, for icons)
+- Language-specific tools (e.g., `npm` for TypeScript, `go` for Golang, etc.)
 
-> **NOTE**
-> See [Install Recipes](#Install-Recipes) for additional Windows and Linux specific notes
-> and quick install snippets
+> See [Install Recipes](#Install-Recipes) for platform-specific notes and quick install snippets.
 
-### Install Kickstart
-
-> **NOTE**
-> [Backup](#FAQ) your previous configuration (if any exists)
-
-Neovim's configurations are located under the following paths, depending on your OS:
-
+### Where to Put This Config
 | OS | PATH |
 | :- | :--- |
 | Linux, MacOS | `$XDG_CONFIG_HOME/nvim`, `~/.config/nvim` |
 | Windows (cmd)| `%localappdata%\nvim\` |
 | Windows (powershell)| `$env:LOCALAPPDATA\nvim\` |
 
-#### Recommended Step
+---
+
+## Major Plugins & Features
+- **LSP**: Full support for C++, Rust, Python, Lua (via `nvim-lspconfig`, `mason.nvim`)
+- **Autoformatting**: Python (`black`, `isort`), Rust (`rustfmt`), Lua (`stylua`)
+- **Treesitter**: Modern syntax highlighting and code navigation
+- **Fuzzy Finder**: Telescope
+- **AI Completion**: Codeium (accept with `<C-g>`)
+- **Autocompletion**: nvim-cmp
+- **Git Integration**: gitsigns
+- **File Explorer**: neo-tree
+
+---
+
+## Keybinds (VSCode User Friendly)
+
+| Action                          | Keybinding             | Plugin/Feature        |
+|----------------------------------|------------------------|-----------------------|
+| Accept Codeium Suggestion        | `<C-g>` (in insert)    | Codeium               |
+| Completion Menu (LSP/cmp)        | `<Tab>`, `<S-Tab>`     | nvim-cmp/LSP/snippet  |
+| Next/Prev Completion             | `<Tab>`, `<S-Tab>`     | nvim-cmp              |
+| Confirm Completion               | `<CR>`                 | nvim-cmp              |
+| Format Buffer                    | `<leader>f`            | conform.nvim          |
+| Go to Definition                 | `gd`                   | LSP/Telescope         |
+| Find References                  | `gr`                   | LSP/Telescope         |
+| Go to Implementation             | `gI`                   | LSP/Telescope         |
+| Go to Type Definition            | `<leader>D`            | LSP/Telescope         |
+| Document Symbols                 | `<leader>ds`           | LSP/Telescope         |
+| Workspace Symbols                | `<leader>ws`           | LSP/Telescope         |
+| Rename Symbol                    | `<leader>rn`           | LSP                   |
+| Code Action                      | `<leader>ca`           | LSP                   |
+| Toggle Inlay Hints               | `<leader>th`           | LSP                   |
+| File Explorer                    | `<leader>e`            | neo-tree              |
+| Fuzzy Find Files                 | `<leader><space>`      | Telescope             |
+| Fuzzy Find in Files (grep)       | `<leader>/`            | Telescope             |
+| Git Status/Signs                 | (see gitsigns docs)    | gitsigns              |
+
+- `<leader>` is usually mapped to `\` or `,` (see your `init.lua` if unsure)
+- Most LSP/Telescope bindings work in normal mode
+- Codeium accept is only in insert mode
+
+---
+
+## How to Install Language Servers & Formatters
+- Open Neovim and run `:Mason` to install/update LSPs and formatters.
+- LSPs auto-install for C++, Rust, Python, Lua.
+- Formatters auto-install for Python, Rust, Lua.
+
+---
+
+## Migrating from VSCode
+- Use the keybinds above for familiar navigation and code actions.
+- Fuzzy finder and file explorer behave similarly to VSCode’s Quick Open and Explorer.
+- LSP and formatting are automatic for supported languages.
+- AI code suggestions (Codeium) are available—accept with `<C-g>`.
+
+---
+
+## Extending & Customizing
+- Plugins are modular: see `lua/custom/plugins/` for LSP, formatting, Codeium, etc.
+- Add new plugins by creating a new `.lua` file in `lua/custom/plugins/`.
+- Keymaps can be customized in your plugin files or `init.lua`.
+
+---
+
+## Credits & License
+- Based on [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
+- Modularized and extended for C++, Rust, Python, and AI support
+
+---
+
+Happy hacking!
 
 [Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) this repo
 so that you have your own copy that you can modify, then install by cloning the
