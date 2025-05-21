@@ -58,10 +58,35 @@ This is a modular, easy-to-read Neovim configuration inspired by Kickstart.nvim,
 | Fuzzy Find Files                 | `<leader><space>`      | Telescope             |
 | Fuzzy Find in Files (grep)       | `<leader>/`            | Telescope             |
 | Git Status/Signs                 | (see gitsigns docs)    | gitsigns              |
+| **CMake: Generate (configure)**  | `<leader>cg`           | cmake-tools.nvim      |
+| **CMake: Build**                 | `<leader>cb`           | cmake-tools.nvim      |
+| **CMake: Clean**                 | `<leader>cc`           | cmake-tools.nvim      |
+| **CMake: Test**                  | `<leader>ct`           | cmake-tools.nvim      |
+| **CMake: Run target**            | `<leader>cx`           | cmake-tools.nvim      |
+| **CMake: Select Build Type**     | `<leader>cs`           | cmake-tools.nvim      |
 
 - `<leader>` is usually mapped to `\` or `,` (see your `init.lua` if unsure)
 - Most LSP/Telescope bindings work in normal mode
 - Codeium accept is only in insert mode
+
+---
+
+## CMake Integration (VSCode-like)
+
+- **CMake syntax highlighting**: Provided by Treesitter (`cmake` parser enabled)
+- **CMake workflow**: Powered by [Civitasv/cmake-tools.nvim](https://github.com/Civitasv/cmake-tools.nvim)
+- **Key features:**
+  - Run CMake configure/generate (`<leader>cg`)
+  - Build your project (`<leader>cb`)
+  - Clean build files (`<leader>cc`)
+  - Run tests (`<leader>ct`)
+  - Run selected target (`<leader>cx`)
+  - Select build type (`<leader>cs`)
+- **Build directory**: Defaults to `build` inside your project (like VSCode CMake Tools)
+- **Status bar**: (Optional) See plugin docs for statusline integration
+- **Debugging**: Integrates with `nvim-dap` (optional, see plugin docs)
+
+This setup gives you a VSCode-like CMake experience inside Neovim, with all major actions available via easy keybinds.
 
 ---
 
