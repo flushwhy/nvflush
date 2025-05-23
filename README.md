@@ -83,6 +83,18 @@ This configuration was originally based on `kickstart.nvim`. The key principles 
 | **Harpoon: Go to file 3**      | `<leader>h3`           | Harpoon               |
 | **Harpoon: Go to file 4**      | `<leader>h4`           | Harpoon               |
 | **Neogit: Open Git Status**    | `<leader>gs`           | Neogit                |
+| **Gitsigns: Stage Hunk**       | `<leader>gS`           | Gitsigns              |
+| **Gitsigns: Reset Hunk**       | `<leader>gR`           | Gitsigns              |
+| **Gitsigns: Stage Buffer**     | `<leader>gSB`          | Gitsigns              |
+| **Gitsigns: Undo Stage Hunk**  | `<leader>gU`           | Gitsigns              |
+| **Gitsigns: Reset Buffer**     | `<leader>gRB`          | Gitsigns              |
+| **Gitsigns: Preview Hunk**     | `<leader>gP`           | Gitsigns              |
+| **Gitsigns: Blame Line**       | `<leader>gB`           | Gitsigns              |
+| **Gitsigns: Toggle Blame**     | `<leader>gtb`          | Gitsigns              |
+| **Gitsigns: Diff Hunk**        | `<leader>gD`           | Gitsigns              |
+| **Gitsigns: Toggle Deleted**   | `<leader>gtd`          | Gitsigns              |
+| *Gitsigns: Next Hunk*          | `]h`                   | Gitsigns              |
+| *Gitsigns: Prev Hunk*          | `[h`                   | Gitsigns              |
 
 - `<leader>` is usually mapped to `\` or `,` (see your `init.lua` if unsure)
 - Most LSP/Telescope bindings work in normal mode
