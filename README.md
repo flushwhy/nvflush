@@ -3,6 +3,18 @@
 ## Overview
 This is a modular, easy-to-read Neovim configuration inspired by Kickstart.nvim, but split into logical files for maintainability. It is tailored for users coming from VSCode, with familiar keybinds, modern code completion, LSP, formatting, and AI code suggestions.
 
+### About Kickstart.nvim (The Foundation)
+This configuration was originally based on `kickstart.nvim`. The key principles from its introductory guide are:
+
+*   **Purpose of Kickstart.nvim**: It's a starting point, not a full distribution, designed for users to understand and customize their Neovim setup.
+*   **Learning Lua**: It's recommended to get familiar with Lua. A quick guide can be found at `https://learnxinyminutes.com/docs/lua/`. For Neovim's specific Lua integration, refer to `:help lua-guide`.
+*   **Essential First Steps for New Neovim Users**:
+    *   Run the command `:Tutor` in Neovim to learn the basics.
+    *   Read the output of `:help` to understand how to navigate and use Neovim's extensive built-in documentation.
+    *   A helpful keymap `<space>sh` is often provided to search the help documentation.
+*   **Guidance within the Configuration**: The original `kickstart.nvim` `init.lua` (and this adapted version) contains comments like `:help X` which point to documentation for specific settings or plugins, as well as general explanatory notes.
+*   **Troubleshooting**: If you encounter issues, especially during initial setup, running `:checkhealth` in Neovim can provide useful diagnostic information.
+
 ## Quick Start
 
 ### Requirements (keep from Kickstart)
@@ -64,6 +76,12 @@ This is a modular, easy-to-read Neovim configuration inspired by Kickstart.nvim,
 | **CMake: Test**                  | `<leader>ct`           | cmake-tools.nvim      |
 | **CMake: Run target**            | `<leader>cx`           | cmake-tools.nvim      |
 | **CMake: Select Build Type**     | `<leader>cs`           | cmake-tools.nvim      |
+| **Harpoon: Add current file**  | `<leader>a`            | Harpoon               |
+| **Harpoon: Toggle quick menu** | `<leader>hm`           | Harpoon               |
+| **Harpoon: Go to file 1**      | `<leader>h1`           | Harpoon               |
+| **Harpoon: Go to file 2**      | `<leader>h2`           | Harpoon               |
+| **Harpoon: Go to file 3**      | `<leader>h3`           | Harpoon               |
+| **Harpoon: Go to file 4**      | `<leader>h4`           | Harpoon               |
 
 - `<leader>` is usually mapped to `\` or `,` (see your `init.lua` if unsure)
 - Most LSP/Telescope bindings work in normal mode
@@ -299,4 +317,3 @@ sudo dnf install -y gcc make git ripgrep fd-find unzip neovim
 sudo pacman -S --noconfirm --needed gcc make git ripgrep fd unzip neovim
 ```
 </details>
-
