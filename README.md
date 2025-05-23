@@ -82,6 +82,7 @@ This configuration was originally based on `kickstart.nvim`. The key principles 
 | **Harpoon: Go to file 2**      | `<leader>h2`           | Harpoon               |
 | **Harpoon: Go to file 3**      | `<leader>h3`           | Harpoon               |
 | **Harpoon: Go to file 4**      | `<leader>h4`           | Harpoon               |
+| **Neogit: Open Git Status**    | `<leader>gs`           | Neogit                |
 
 - `<leader>` is usually mapped to `\` or `,` (see your `init.lua` if unsure)
 - Most LSP/Telescope bindings work in normal mode
