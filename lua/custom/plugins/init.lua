@@ -1,22 +1,5 @@
 return {
-  {
-    'andweeb/presence.nvim',
-    lazy = false,
-    config = function()
-      require('presence').setup({
-        -- General options
-        auto_update = true, -- Update activity based on autocmd events (if `false`, map or custom activity
-        neovim_image_text = 'NeoVim', -- Text displayed when hovered over the Neovim image
-        main_image = 'file', -- Main image display (either 'neovim' or 'file')
-      })
-    end,
-  },
-  {
-    'theprimeagen/harpoon',
-    config = function()
-      require('harpoon').setup()
-      require('telescope').load_extension('harpoon')
-    end,
-  },
+  -- All plugins from this file have been moved to their own dedicated files
+  -- inside `lua/custom/plugins/` for better organization.
+  -- This file can be deleted if you have no other plugins to add here.
 }
-
