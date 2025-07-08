@@ -3,9 +3,8 @@ return {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
     dependencies = {
-      { 'williamboman/mason.nvim', config = true },
+      'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
-      'WhoIsSethDaniel/mason-tool-installer.nvim',
       { 'j-hui/fidget.nvim', opts = {} },
       'hrsh7th/cmp-nvim-lsp',
     },
@@ -72,25 +71,19 @@ return {
         end,
       })
 
-      require('mason').setup()
-      local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, {
-        'stylua',
-        'clangd',
-        'rust-analyzer',
-        'pyright',
-        'black',
-        'isort',
-        'rustfmt',
-      })
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+      local ensure_installed = vim.tbl_keys(servers)
+      vim.list_extend(ensure_installed, { 'stylua', 'black', 'isort', 'rustfmt' })
+
+      require('mason').setup {
+        ensure_installed = ensure_installed,
+      }
 
       require('mason-lspconfig').setup {
         handlers = {
           function(server_name)
-            local server = servers[server_name] or {}
-            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
+            local server_opts = servers[server_name] or {}
+            server_opts.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server_opts.capabilities or {})
+            require('lspconfig')[server_name].setup(server_opts)
           end,
         },
       }

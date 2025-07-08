@@ -1,8 +1,12 @@
 return {
   'lewis6991/gitsigns.nvim',
-  event = { 'BufReadPre', 'BufNewFile' }, -- Load on buffer read or new file
+  event = 'VeryLazy', -- Use VeryLazy to defer loading and avoid potential race conditions
   config = function()
     require('gitsigns').setup({
+      debug_mode = true, -- Enable for more verbose logging to help diagnose issues
+      watch_gitdir = {
+        enabled = false,
+      },
       -- Current line blame (toggle with <leader>gtb)
       current_line_blame = false, -- Default is false, enable if you want it on by default
       current_line_blame_opts = {
@@ -36,26 +40,28 @@ return {
           return '<Ignore>'
         end, { expr = true, desc = 'Gitsigns: Previous Hunk' })
 
-        -- Actions (New <leader>g mappings)
-        map('n', '<leader>gS', gs.stage_hunk, { desc = 'Gitsigns: Stage Hunk' })
-        map('n', '<leader>gR', gs.reset_hunk, { desc = 'Gitsigns: Reset Hunk' })
-        map('v', '<leader>gS', function() gs.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end, { desc = 'Gitsigns: Stage Selected Hunks' })
-        map('v', '<leader>gR', function() gs.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end, { desc = 'Gitsigns: Reset Selected Hunks' })
+        -- Actions: a more consistent mapping scheme
+        -- Use lowercase for hunk/line actions, uppercase for buffer-wide actions
+        map('n', '<leader>gh', gs.stage_hunk, { desc = 'Gitsigns: Stage [H]unk' })
+        map('v', '<leader>gh', function() gs.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end, { desc = 'Gitsigns: Stage Selected Hunks' })
+        map('n', '<leader>gH', gs.stage_buffer, { desc = 'Gitsigns: Stage Buffer' })
 
-        map('n', '<leader>gSB', gs.stage_buffer, { desc = 'Gitsigns: Stage Buffer' })
-        map('n', '<leader>gU', gs.undo_stage_hunk, { desc = 'Gitsigns: Undo Stage Hunk' })
-        map('n', '<leader>gRB', gs.reset_buffer, { desc = 'Gitsigns: Reset Buffer' })
-        map('n', '<leader>gP', gs.preview_hunk, { desc = 'Gitsigns: Preview Hunk' })
-        map('n', '<leader>gB', gs.blame_line, { desc = 'Gitsigns: Blame Line' })
-        map('n', '<leader>gtb', gs.toggle_current_line_blame, { desc = 'Gitsigns: Toggle Current Line Blame' })
-        map('n', '<leader>gD', gs.diffthis, { desc = 'Gitsigns: Diff This Hunk' })
-        map('n', '<leader>gtd', gs.toggle_deleted, { desc = 'Gitsigns: Toggle Deleted View' })
+        map('n', '<leader>gr', gs.reset_hunk, { desc = 'Gitsigns: [R]eset Hunk' })
+        map('v', '<leader>gr', function() gs.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end, { desc = 'Gitsigns: Reset Selected Hunks' })
+        map('n', '<leader>gR', gs.reset_buffer, { desc = 'Gitsigns: Reset Buffer' })
+
+        map('n', '<leader>gu', gs.undo_stage_hunk, { desc = 'Gitsigns: [U]ndo Stage Hunk' })
+        map('n', '<leader>gp', gs.preview_hunk, { desc = 'Gitsigns: [P]review Hunk' })
+        map('n', '<leader>gb', gs.blame_line, { desc = 'Gitsigns: [B]lame Line' })
+        map('n', '<leader>gB', gs.toggle_current_line_blame, { desc = 'Gitsigns: Toggle Current Line [B]lame' })
+        map('n', '<leader>gd', gs.diffthis, { desc = 'Gitsigns: [D]iff This Hunk' })
+        map('n', '<leader>gD', gs.toggle_deleted, { desc = 'Gitsigns: Toggle [D]eleted View' })
 
         -- Text object
         map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'Gitsigns: Select Inner Hunk' })
-        map({ 'o', 'x' }, 'ah', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'Gitsigns: Select Around Hunk (same as inner)' })
+        -- The 'ah' text object is the same as 'ih' for gitsigns, so it's commented out to avoid redundancy.
+        -- map({ 'o', 'x' }, 'ah', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'Gitsigns: Select Around Hunk' })
       end,
     })
-    print("Custom Gitsigns keymaps configured!") -- Optional: for confirmation
   end,
 }

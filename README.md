@@ -18,7 +18,7 @@ This configuration was originally based on `kickstart.nvim`. The key principles 
 ## Quick Start
 
 ### Requirements (keep from Kickstart)
-- Neovim (latest stable or nightly recommended)
+- Neovim (latest stable or nightly recommended) v11+
 - Basic utils: `git`, `make`, `unzip`, C Compiler (`gcc`)
 - [ripgrep](https://github.com/BurntSushi/ripgrep#installation)
 - Clipboard tool (xclip/xsel/win32yank or other depending on platform)
@@ -66,7 +66,7 @@ This configuration was originally based on `kickstart.nvim`. The key principles 
 | Rename Symbol                    | `<leader>rn`           | LSP                   |
 | Code Action                      | `<leader>ca`           | LSP                   |
 | Toggle Inlay Hints               | `<leader>th`           | LSP                   |
-| File Explorer                    | `<leader>e`            | neo-tree              |
+| File Explorer (Reveal)           | `\`                    | neo-tree              |
 | Fuzzy Find Files                 | `<leader><space>`      | Telescope             |
 | Fuzzy Find in Files (grep)       | `<leader>/`            | Telescope             |
 | Git Status/Signs                 | (see gitsigns docs)    | gitsigns              |
@@ -83,16 +83,16 @@ This configuration was originally based on `kickstart.nvim`. The key principles 
 | **Harpoon: Go to file 3**      | `<leader>h3`           | Harpoon               |
 | **Harpoon: Go to file 4**      | `<leader>h4`           | Harpoon               |
 | **Neogit: Open Git Status**    | `<leader>gs`           | Neogit                |
-| **Gitsigns: Stage Hunk**       | `<leader>gS`           | Gitsigns              |
-| **Gitsigns: Reset Hunk**       | `<leader>gR`           | Gitsigns              |
-| **Gitsigns: Stage Buffer**     | `<leader>gSB`          | Gitsigns              |
-| **Gitsigns: Undo Stage Hunk**  | `<leader>gU`           | Gitsigns              |
-| **Gitsigns: Reset Buffer**     | `<leader>gRB`          | Gitsigns              |
-| **Gitsigns: Preview Hunk**     | `<leader>gP`           | Gitsigns              |
-| **Gitsigns: Blame Line**       | `<leader>gB`           | Gitsigns              |
-| **Gitsigns: Toggle Blame**     | `<leader>gtb`          | Gitsigns              |
-| **Gitsigns: Diff Hunk**        | `<leader>gD`           | Gitsigns              |
-| **Gitsigns: Toggle Deleted**   | `<leader>gtd`          | Gitsigns              |
+| **Gitsigns: Stage Hunk**       | `<leader>gh`           | Gitsigns              |
+| **Gitsigns: Reset Hunk**       | `<leader>gr`           | Gitsigns              |
+| **Gitsigns: Stage Buffer**     | `<leader>gH`           | Gitsigns              |
+| **Gitsigns: Undo Stage Hunk**  | `<leader>gu`           | Gitsigns              |
+| **Gitsigns: Reset Buffer**     | `<leader>gR`           | Gitsigns              |
+| **Gitsigns: Preview Hunk**     | `<leader>gp`           | Gitsigns              |
+| **Gitsigns: Blame Line**       | `<leader>gb`           | Gitsigns              |
+| **Gitsigns: Toggle Blame**     | `<leader>gB`           | Gitsigns              |
+| **Gitsigns: Diff Hunk**        | `<leader>gd`           | Gitsigns              |
+| **Gitsigns: Toggle Deleted**   | `<leader>gD`           | Gitsigns              |
 | *Gitsigns: Next Hunk*          | `]h`                   | Gitsigns              |
 | *Gitsigns: Prev Hunk*          | `[h`                   | Gitsigns              |
 
