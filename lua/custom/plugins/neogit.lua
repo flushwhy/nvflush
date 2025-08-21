@@ -21,7 +21,5 @@ return {
     -- You could add more specific keymaps here if desired, for example:
     -- vim.keymap.set('n', '<leader>gc', function() neogit.open({ 'commit' }) end, { desc = 'Neogit: Commit' })
     -- vim.keymap.set('n', '<leader>gl', function() neogit.open({ 'log' }) end, { desc = 'Neogit: Log' })
-
-    print("Neogit plugin configured!") -- Optional: for confirmation
   end,
 }
