@@ -3,9 +3,9 @@ return {
   event = 'VeryLazy', -- Use VeryLazy to defer loading and avoid potential race conditions
   config = function()
     require('gitsigns').setup({
-      debug_mode = true, -- Enable for more verbose logging to help diagnose issues
+      debug_mode = false,
       watch_gitdir = {
-        enabled = false,
+        enabled = true,
       },
       -- Current line blame (toggle with <leader>gtb)
       current_line_blame = false, -- Default is false, enable if you want it on by default

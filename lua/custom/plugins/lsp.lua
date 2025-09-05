@@ -15,6 +15,7 @@ return {
       local servers = {
         clangd = {},
         rust_analyzer = {},
+        gopls = {},
         pyright = {},
         lua_ls = {
           settings = {
@@ -26,8 +27,11 @@ return {
         },
       }
 
+      -- Create a single autogroup for LSP-related autocmds to prevent resource leaks
+      local lsp_group = vim.api.nvim_create_augroup('kickstart-lsp-config', { clear = true })
+
       vim.api.nvim_create_autocmd('LspAttach', {
-        group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
+        group = lsp_group,
         callback = function(event)
           local map = function(keys, func, desc, mode)
             mode = mode or 'n'
@@ -43,24 +47,17 @@ return {
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
           local client = vim.lsp.get_client_by_id(event.data.client_id)
+
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
-            local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
               buffer = event.buf,
-              group = highlight_augroup,
+              group = lsp_group,
               callback = vim.lsp.buf.document_highlight,
             })
             vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
               buffer = event.buf,
-              group = highlight_augroup,
+              group = lsp_group,
               callback = vim.lsp.buf.clear_references,
-            })
-            vim.api.nvim_create_autocmd('LspDetach', {
-              group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
-              callback = function(event2)
-                vim.lsp.buf.clear_references()
-                vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event2.buf }
-              end,
             })
           end
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
@@ -72,7 +69,11 @@ return {
       })
 
       local ensure_installed = vim.tbl_keys(servers)
-      vim.list_extend(ensure_installed, { 'stylua', 'black', 'isort', 'rustfmt' })
+      -- Extend with formatters and linters
+      vim.list_extend(ensure_installed, {
+        'stylua', 'black', 'isort', 'rustfmt', 'goimports', -- formatters
+        'cpplint', 'golangci-lint', 'flake8', 'markdownlint', -- linters
+      })
 
       require('mason').setup {
         ensure_installed = ensure_installed,
